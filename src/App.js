@@ -1,11 +1,12 @@
 import './App.css';
-
+import Content from './Component/Content';
+import Header from './Component/Header';
 function App() {
   return (
-<div class="header">
-  <h1>Precision Scoop</h1>
-  <p>Scoop up result</p>
-</div>
+    <div>
+      <Header/>
+      <Content/>
+    </div>
   );
 }
 
