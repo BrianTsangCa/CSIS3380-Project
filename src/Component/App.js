@@ -1,8 +1,8 @@
-import './App.css';
+import '../App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Content from './Component/Content';
-import Header from './Component/Header';
-import NotFound from './Component/NotFound';
+import Content from './Content';
+import Header from './Header';
+import NotFound from './NotFound';
 function App() {
   return (
     <div>
