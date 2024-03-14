@@ -1,7 +1,7 @@
 import '../App.css';
 import Card from './Card';
 import React from 'react';
-
+import Header from './Header';
 class Content extends React.Component{
     state={
         products:[
@@ -36,16 +36,28 @@ class Content extends React.Component{
                 description:"Premium Organic Pea Protein Powder that’s all-natural, vegan, and made with just 1 ingredient. No added flavours, sweeteners, or colours. Pesticide-Free, Solvent-Free, Free of All Chemical Residues.",
                 price:"39.99",
                 rating:"5"
-            }
-        ]
+            },
+            
+        ],
+        cart:[],
     };
-
+    addCart=(id)=>{
+        const product=this.state.products.find(product=>product.id===id);
+        if(product){
+            this.setState(prevState=>({
+                cart:[...prevState.cart,product]
+            }))
+        }
+    }
   render(){
+
     return (
+
         <div class="content">
+            <Header cart={this.state.cart}/>
             <h1>Explore Precision Scoop</h1>
             <div class="card-wrapper">
-            {this.state.products.map(product=><Card id={product.id} name={product.name} img={product.img} description={product.description} price={product.price} rating={product.rating}/>)}
+            {this.state.products.map(product=><Card ProductId={product.id} key={product.id} name={product.name} img={product.img} description={product.description} price={product.price} rating={product.rating} addCart={this.addCart}/>)}
             </div>
         </div>
       );

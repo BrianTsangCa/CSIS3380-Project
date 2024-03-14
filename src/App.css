@@ -16,24 +16,16 @@ body {
 
 
 
-
-
-
-
-
-
-
   /* Page Content */
-  .content {padding:20px;}
   .card-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 20px; 
   }
   
   .card {
-    width: calc(20% - 40px); /* Adjust width based on your layout */
+    width: calc(10% - 40px); /* Adjust width based on your layout */
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -60,6 +52,23 @@ body {
   
   .price {
     font-weight: bold;
+  }
+  .purchase-button {
+    display: block; 
+    margin-top: 10px;
+  }
+  
+  .search-icon {
+    width: 30px;
+    height: 30px; 
+  }
+  .cart-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 8px;
+    font-size: 14px;
+    margin-left: 5px;
   }
   
   .purchase-button {

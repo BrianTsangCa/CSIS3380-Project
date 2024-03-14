@@ -1,14 +1,13 @@
 import '../App.css';
 import SearchBar from './SearchBar';
+import logo from "./img/logo.png";
 
-function Header() {
+function Header(props) {
   return (
 <div class="header">
-  <h1>Precision Scoop</h1>
-  <p>Scoop up result</p>
-  <SearchBar/>
+  <img src={logo} alt="logo"/>
+  <SearchBar length={props.cart.length} cart={props.cart}/>
 </div>
-
   );
 }
 
