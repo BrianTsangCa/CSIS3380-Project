@@ -208,3 +208,21 @@ body {
 .modal-close {
   margin-top: 10px;
 }
+
+/* SidePanel styling */
+
+.sidepanel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 300px; /* Adjust width as needed */
+  height: 100vh;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(100%); /* Initially hidden */
+  z-index: 10; /* Ensure it's on top */
+}
+
+.sidepanel.open {
+  transform: translateX(0); /* Slide in when open */
+}

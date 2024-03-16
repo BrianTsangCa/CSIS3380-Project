@@ -3,9 +3,12 @@ import React from 'react';
 
 
 function Card(props) {
+  const handleAddToCart = () => {
+    console.log('Product:', props); 
+    props.addCart(props); 
+  };
+
   return (
-
-
     <div class="card">
       <img src={props.img} alt="product" class="card-image" />
       <div class="container">
@@ -17,11 +20,16 @@ function Card(props) {
             <span key={index}>⭐</span>
           ))}
         </div>
-        <div><button className="purchase-button" onClick={() => props.addCart(props.ProductId)}>Add</button></div>
+        <div>
+          <button
+            className="purchase-button"
+            onClick={handleAddToCart}
+          >
+            Add
+          </button>
+        </div>
       </div>
     </div>
-
-
   );
 }
 
