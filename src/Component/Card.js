@@ -1,37 +1,32 @@
 import '../App.css';
 import React from 'react';
 
-
-function Card(props) {
+const Card = ({ product, addCart, toggleSidePanel  }) => {
   const handleAddToCart = () => {
-    console.log('Product:', props); 
-    props.addCart(props); 
+    addCart(product);
+    toggleSidePanel(); // Toggle the side panel when adding to cart
   };
 
   return (
-    <div class="card">
-      <img src={props.img} alt="product" class="card-image" />
-      <div class="container">
-        <h4><b>{props.name}</b></h4>
-        <p class="description">{props.description}</p>
-        <div class="footer">
-          <span class="price">${props.price}</span>
-          {Array.from({ length: props.rating }, (_, index) => (
+    <div className="card">
+      <img src={product.img} alt="product" className="card-image" />
+      <div className="container">
+        <h4><b>{product.name}</b></h4>
+        <p className="description">{product.description}</p>
+        <div className="footer">
+          <span className="price">${product.price}</span>
+          {Array.from({ length: product.rating }, (_, index) => (
             <span key={index}>⭐</span>
           ))}
         </div>
-        <div>
-          <button
-            className="purchase-button"
-            onClick={handleAddToCart}
-          >
-            Add
-          </button>
-        </div>
+      </div>
+      <div>
+        <button className="purchase-button" onClick={handleAddToCart}>
+          Add
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default Card;
-
