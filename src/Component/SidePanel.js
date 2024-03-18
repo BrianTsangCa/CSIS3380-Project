@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const SidePanel = ({ cartItems, onClose }) => {
+const Sidepanel = ({ cartItems, onClose }) => {
   const sidepanelClass = `sidepanel ${cartItems.length > 0 ? 'open' : 'closed'}`;
 
+  useEffect(() => {
+    console.log('cartItems.length after update:', cartItems.length); // Log here (optional)
+  }, [cartItems]);
+  
   return (
     <div className={sidepanelClass}>
       <h2>Your Cart</h2>
@@ -15,7 +19,8 @@ const SidePanel = ({ cartItems, onClose }) => {
       </ul>
       <button onClick={onClose}>Close Cart</button>
     </div>
+    
   );
 };
 
-export default SidePanel;
+export default Sidepanel;

@@ -1,8 +1,8 @@
+
 import '../App.css';
 import Card from './Card';
 import React from 'react';
 import Header from './Header';
-
 class Content extends React.Component {
   
   state = {
@@ -170,57 +170,60 @@ class Content extends React.Component {
       // }
     ],
     cart: [],
-    isSidePanelOpen: false,
   };
 
-//   addCart = (id) => {
-//     const product = this.state.products.find(product => product.id === id);
-//     if (product) {
-//       this.setState(prevState => ({
-//         cart: [...prevState.cart, product]
-//       }))
-//     }
-//   }
-//   render() {
 
-//     return (
 
-//       <div class="content">
-//         <Header cart={this.state.cart} />
-//         <h1>Explore Precision Scoop</h1>
-//         <div class="card-wrapper">
-//           {this.state.products.map(product => <Card ProductId={product.id} key={product.id} name={product.name} img={product.img} description={product.description} price={product.price} rating={product.rating} addCart={this.addCart} />)}
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+  addCart = (product) => {
+    
+    if (!product || !product.name) {
+      return;
+    }
+    
+  
+    const existingItemIndex = this.state.cart.findIndex(item => item.id === product.id);
+    
+    if (existingItemIndex !== -1) {
+      
+      const updatedCart = [...this.state.cart];
+      
+      updatedCart[existingItemIndex].quantity += 1; 
+      this.setState({ cart: updatedCart });
+    } else {
+      
+      const updatedCart = [...this.state.cart, { ...product, quantity: 1 }];
+      this.setState({ cart: updatedCart });
+      this.props.addCart(product);
+      
+      
+    }
+  };
 
-toggleSidePanel = () => {
-  this.setState(prevState => ({
-    isSidePanelOpen: !prevState.isSidePanelOpen,
-  }));
-};
 
-render() {
-  const { cart, products } = this.state;
 
-  return (
-    <div className="content">
-      {/* Your other content here */}
-      <div className="card-wrapper">
-        {products.map(product => (
-          <Card
-            key={product.id}
-            product={product}
-            addCart={this.addCart} // Pass addCart function to Card component
-            toggleSidePanel={this.toggleSidePanel}
-          />
-        ))}
+
+  render() {
+    return (
+      <div className="content">
+        <Header cart={this.state.cart} />
+        <h1>Explore Precision Scoop</h1>
+        <div className="card-wrapper">
+          {this.state.products.map(product => (
+            <Card
+              key={product.id}
+              ProductId={product.id}
+              name={product.name}
+              img={product.img}
+              description={product.description}
+              price={product.price}
+              rating={product.rating}
+              addCart={this.addCart}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
 export default Content;

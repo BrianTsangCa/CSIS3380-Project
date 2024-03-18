@@ -1,32 +1,37 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import '../App.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import Content from './Content';
 import Cart from './Cart';
-import SidePanel from './SidePanel'; // Correct import statement
+import Sidepanel from './SidePanel';
+import React, { useState } from 'react';
 import NotFound from './NotFound';
 
+
 function App() {
-  const [showSidePanel, setShowSidePanel] = useState(true); // Set to true by default
-  const [cartItems, setCartItems] = useState([]);
+  const [showSidepanel, setShowSidepanel] = useState(false);
+const [cartItems, setCartItems] = useState([]);
 
-  const toggleSidePanel = () => {
-    setShowSidePanel(prevShowSidePanel => !prevShowSidePanel);
-  };
+const toggleSidepanel = () => {
+  console.log('Toggling side panel:', !showSidepanel); // Verify state update
+  setShowSidepanel(!showSidepanel);
+};
 
-  const handleAddCart = (product) => {
-    setCartItems(prevCartItems => [...prevCartItems, product]);
-    toggleSidePanel(); // Show the side panel when adding an item
-  };
+const handleAddCart = (product) => {
+  setCartItems([...cartItems, product]);
+  toggleSidepanel();
+};
 
   return (
     <div>
-      {showSidePanel && <SidePanel cartItems={cartItems} onClose={toggleSidePanel} />}
       <Routes>
         <Route path="/" element={<Content addCart={handleAddCart} />} />
         <Route path="/Home" element={<Content addCart={handleAddCart} />} />
         <Route path="/Cart" element={<Cart cartItems={cartItems} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {showSidepanel && <Sidepanel cartItems={cartItems} onClose={toggleSidepanel} />}
+      
     </div>
   );
 }
