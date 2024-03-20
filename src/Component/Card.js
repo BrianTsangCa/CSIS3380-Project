@@ -5,7 +5,14 @@ import React from 'react';
 function Card(props) {
   const handleAddToCart = () => {
     console.log('Add to cart clicked for:', props.name);
-    props.addCart(props); 
+    props.addCart({
+      id: props.ProductId,
+      name: props.name,
+      img: props.img,
+      description: props.description,
+      price: props.price,
+      rating: props.rating
+    }); 
   };
 
   return (
